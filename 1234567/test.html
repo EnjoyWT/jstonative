@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>测试页面</title>
+</head>
+<body>
+
+    <button onclick="getInfoFromNative()">原生回调</button>
+    <button onclick="getInfoFromNative2()">原生回调2</button>
+</body>
+<script>
+    var callBackID = "callBackID";
+    var callBackID2 = "callBackID2";//使用相同方法的时候需要使用不同的回调id,不同方法不受此限制
+    var params = {'name':'我是jack！！！'};
+    function getInfoFromNative(){
+      JKEventHandler.callNativeFun('getNativeInfo',params,callBackID,
+                  function callback(data){
+                      console.log('succedss block');
+                      alert("333");
+                  });
+    };
+    function getInfoFromNative2(){
+      JKEventHandler.callNativeFun2('getNativeInfo',params,callBackID2,
+                      function successCallBack(data){
+                          console.log('succedss block');
+                          alert("2222");
+                      },
+                      function failureCallBack(data){
+                          console.log('fail block');
+                          alert("2222");
+                      });
+    }
+</script>
+</html>
